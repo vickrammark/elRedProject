@@ -1,0 +1,47 @@
+.container {
+  width: 170px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 1px solid #eceff6;
+  padding: 16px;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.container > .title {
+  text-align: start;
+  font-size: 10px;
+}
+.container > .description {
+  text-align: start;
+  font-size: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  line-height: 1.5em;
+  height: 3em;
+  width: 100%;
+  color: #a1a1a1;
+}
+
+.favourite {
+  position: absolute;
+  left: 80%;
+  top: 10%;
+}
+
+.image {
+  width: 90px;
+  height: 90px;
+  display: block;
+}
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}

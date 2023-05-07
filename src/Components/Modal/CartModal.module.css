@@ -1,0 +1,62 @@
+.container {
+  position: fixed;
+  top: 0%;
+  left: 40%;
+  bottom: 0%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  min-width: 750px;
+  right: -2%;
+  z-index: 1000;
+  margin: 15px;
+  box-shadow: -2px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+}
+.ProductContainer {
+  border-right: 1px dashed #e5e5e5;
+  flex: 0.5;
+  padding: 16px;
+  overflow-y: auto;
+}
+.OrderContainer {
+  flex: 0.5;
+  padding: 16px;
+  overflow-y: auto;
+}
+.productHeader {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.orderHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.orderHeaderContent {
+  font-size: 20px;
+  font-weight: bold;
+  flex: 1;
+}
+.orderHeaderClose {
+  cursor: pointer;
+}
+.addCartButtonContainer{
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+.addCartToButton{
+  background-color: rgb(161, 7, 7);
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+}

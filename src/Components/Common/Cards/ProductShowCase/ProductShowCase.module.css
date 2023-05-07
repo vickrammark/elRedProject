@@ -1,0 +1,25 @@
+.container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 270px;
+  background-color: #eceff6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0px auto;
+  align-items: center;
+  margin-right: 15px;
+}
+.favourite {
+  position: absolute;
+  top: 10%;
+  left: 80%;
+}
+
+.image {
+  max-width: 220px;
+  max-height: 270px;
+  display: block;
+  padding: 16px;
+}

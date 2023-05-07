@@ -1,0 +1,144 @@
+.container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 100%;
+  flex: 0.3;
+  overflow-y: auto;
+  max-height: 700px;
+}
+.cartNavbar {
+  background-color: #f1f3f8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+}
+.NoCartItemImageContainer {
+  width: 400px;
+  height: 250px;
+  margin: 0px auto;
+  margin-top: 200px;
+}
+.tableContainer {
+  max-height: 400px;
+  overflow: hidden;
+}
+.seeMoreContainer {
+  padding: 16px;
+  cursor: pointer;
+}
+.seeMoreContent {
+  border-top: 1px dashed #837e7e;
+  color: rgb(150, 21, 21);
+  margin: 0px auto;
+  text-align: center;
+  padding-top: 12px;
+}
+.otherInstructionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #eceff6;
+  padding: 16px;
+}
+.otherInstuctionContent {
+  flex: 1;
+}
+.addContainer {
+  color: rgb(150, 21, 21);
+  font-size: 14px;
+  margin-right: 5px;
+}
+.purchaseContainer {
+  padding: 0px 16px;
+  padding-top: 16px;
+}
+.purchaseOrderText {
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+.purchaseOrderNumber {
+  background-color: #eceff6;
+  padding: 8px 16px;
+  border-radius: 7px;
+}
+.addressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  margin-top: 15px;
+}
+.addressContent {
+  flex: 1;
+}
+.viewContainer {
+  color: rgb(150, 21, 21);
+  margin-right: 5px;
+  font-size: 14px;
+}
+.address {
+  color: #837e7e;
+  font-size: 12px;
+  margin-top: 20px;
+  border-bottom: 1px dashed #837e7e;
+  padding: 0px 16px;
+  padding-bottom: 16px;
+  margin-top: 7px;
+  margin-bottom: 15px;
+}
+.itemAmountContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  margin-top:7px;
+}
+.itemAmountLabel {
+  color: #837e7e;
+  font-size: 12px;
+  flex: 1;
+}
+.amount {
+  color: #837e7e;
+  font-size: 12px;
+}
+.sepeartor {
+  border: 1px solid #4e4e4e;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.finalAmountContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+}
+.finaAmountLabel {
+  flex: 1;
+}
+.actionContainer {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 16px;
+  margin-bottom: 20px;
+}
+.clearButton {
+  border: 1px solid #837e7e;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+.placeOrderButton {
+  background-color: rgb(150, 21, 21);
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: white;
+}

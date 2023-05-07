@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+/* .shrink{
+    padding-left: 16px;
+    padding-right: 16px;
+} */
+.tableContainer {
+  flex: 1;
+  border-spacing: 0px 15px;
+}
+.tableDataItem {
+  text-align: center;
+}
+.tableDataItemProduct {
+  padding-left: 16px;
+}
+.tableProduct {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.tablePrice {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.tableDataItemPriceContainer {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.closeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faClose {
+  color: red;
+  width: 20px;
+  height: 20px;
+  display: block;
+  cursor: pointer;
+}
+.productLableContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.productImageContainer {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #eceff6;
+  border-radius: 10px;
+}
+.image {
+  width: 50px;
+  display: block;
+  padding: 8px;
+}
+.productDetailContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.productName {
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.productSaleDescription {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8d8d8d;
+  margin-left: 10px;
+}
+th {
+  background-color: #eceff6;
+}
+.tableHeaderItem {
+  padding: 10px;
+}
+
+.emptyContainer {
+  text-align: center;
+  margin-top: 200px;
+}
+.pullContainerUp {
+  margin-top: -20px;
+}
+.editContainer{
+    color:  rgb(150, 21, 21);
+    font-size: 10px;
+    cursor: pointer;
+}

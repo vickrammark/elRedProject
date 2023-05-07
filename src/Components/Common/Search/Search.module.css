@@ -1,0 +1,30 @@
+.customized-input{
+    outline: none;
+    height: 25px;
+    border: 1px solid transparent;
+    width: 100%;
+    padding-left: 10px;
+    text-align: start;
+    background-color: #eceff6;
+}
+.customized-input-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #eceff6;
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+.input-placeholder{
+    color: #bebebe;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.default-place-holder{
+    font-size: 10px;
+    margin-top: -1px;
+    display: block;
+}
