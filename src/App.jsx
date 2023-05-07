@@ -12,17 +12,6 @@ function App() {
   const selectedSubProduct = useSelector(
     (state) => state.product.selectedSubProduct
   );
-  useEffect(() => {
-    const initialValue = document.body.style.zoom;
-
-    // Change zoom level on mount
-    document.body.style.zoom = "75%";
-
-    return () => {
-      // Restore default value
-      document.body.style.zoom = initialValue;
-    };
-  }, []);
   return (
     <div className={classes.mainContainer}>
       <div className={classes.navContainer}>
