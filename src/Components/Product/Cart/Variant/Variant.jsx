@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from "./variant.module.css";
+import classes from "./Variant.module.css";
 
 const Variant = (props) => {
   const [variants, setVariants] = useState([]);
