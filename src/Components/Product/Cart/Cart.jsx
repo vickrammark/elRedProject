@@ -1,17 +1,24 @@
 import classes from "./Cart.module.css";
 import NoProduct from "../../../assets/NoCartItem.webp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartTable from "./CartTable/CartTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { MODAL_OPENED_BY } from "../../../Constants/Constant.Js";
+import FinalPlaceOrderModal from "../../Modal/FinalPlaceOrderModal";
+import { productActions } from "../../../Store/productReducer";
 const Cart = (props) => {
   const cartItems = useSelector(
     (state) => state.product.selectedProductsInCart
   );
+  const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
+  const [openPlaceOrderModal, setOpenPlaceOrderModal] = useState(false);
   const [symbol, setSymbol] = useState("");
+  const clearCart = () => {
+    dispatch(productActions.clearAllProductInCart());
+  };
   useEffect(() => {
     const sumTotal = cartItems.reduce((total, item) => {
       return total + item.price;
@@ -131,10 +138,23 @@ const Cart = (props) => {
             </div>
           </div>
           <div className={classes.actionContainer}>
-            <div className={classes.clearButton}>Clear Cart</div>
-            <div className={classes.placeOrderButton}>Place Order</div>
+            <div className={classes.clearButton} onClick={() => clearCart()}>
+              Clear Cart
+            </div>
+            <div
+              className={classes.placeOrderButton}
+              onClick={() => {
+                setOpenPlaceOrderModal(true);
+                clearCart();
+              }}
+            >
+              Place Order
+            </div>
           </div>
         </>
+      )}
+      {openPlaceOrderModal && (
+        <FinalPlaceOrderModal setOpenPlaceOrderModal={setOpenPlaceOrderModal} />
       )}
     </div>
   );

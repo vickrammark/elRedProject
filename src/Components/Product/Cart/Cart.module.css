@@ -134,6 +134,7 @@
   padding: 8px;
   font-size: 14px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .placeOrderButton {
   background-color: rgb(150, 21, 21);
@@ -141,4 +142,5 @@
   font-size: 14px;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
 }

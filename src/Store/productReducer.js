@@ -86,6 +86,9 @@ const productSlice = createSlice({
       );
       state.selectedProductsInCart = data;
     },
+    clearAllProductInCart: (state, action) => {
+      state.selectedProductsInCart = [];
+    },
   },
 });
 
