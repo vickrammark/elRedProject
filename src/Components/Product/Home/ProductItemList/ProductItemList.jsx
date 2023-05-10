@@ -1,6 +1,6 @@
 import ProductItemCard from "../../../Common/Cards/ProductItemCards/ProductItemCard";
 import ProductItemListClasses from "./ProductItemList.module.css";
-const ProductItemList = ({ products, setOpenModal }) => {
+const ProductItemList = ({ products, setOpenModal,setOpenedModalBy}) => {
   if (products.length === 0) {
     return (
       <div className={ProductItemListClasses.container}>
@@ -17,6 +17,7 @@ const ProductItemList = ({ products, setOpenModal }) => {
         name={item.itemDescription}
         url={item.productImages[0] ? item.productImages[0] : ""}
         id={item.productId}
+        setOpenedModalBy={setOpenedModalBy}
       />
     );
   });

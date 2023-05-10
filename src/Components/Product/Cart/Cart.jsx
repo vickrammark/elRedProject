@@ -5,6 +5,7 @@ import CartTable from "./CartTable/CartTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { MODAL_OPENED_BY } from "../../../Constants/Constant.Js";
 const Cart = (props) => {
   const cartItems = useSelector(
     (state) => state.product.selectedProductsInCart
@@ -40,18 +41,22 @@ const Cart = (props) => {
               cartItems={cartItems}
               changeHeader={true}
               setOpenModal={props.setOpenModal}
+              setOpenedModalBy={props.setOpenedModalBy}
+              setChangeInitiatedFrom={props.setChangeInitiatedFrom}
             />
           </div>
           <div
             className={classes.seeMoreContainer}
             onClick={() => props.setOpenModal(true)}
           >
-            <div className={classes.seeMoreContent}>
-              See all{" "}
+            <div
+              className={classes.seeMoreContent}
+              onClick={() => props.setOpenedModalBy(MODAL_OPENED_BY.SEE_ALL)}
+            >
+              See all
               <FontAwesomeIcon
-                cls
                 icon={faChevronCircleRight}
-                style={{ color: "rgb(150, 21, 21)" }}
+                style={{ color: "rgb(150, 21, 21)", marginLeft: "5px" }}
               />
             </div>
           </div>

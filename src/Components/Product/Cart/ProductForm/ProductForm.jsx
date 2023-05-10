@@ -1,16 +1,20 @@
 import { faL } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./ProductForm.module.css";
 const ProductForm = (props) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(props.quantity);
   const [submitted, setSubmitted] = useState(false);
   const [touched, setTouched] = useState(false);
+  useEffect(() => {
+    setQuantity(props.quantity);
+  }, [props.quantity]);
   return (
     <div className={classes.container}>
       <div className={classes.label}>Enter Quantity</div>
       <div className={classes.inputQuantity}>
         <input
           type={"number"}
+          value={quantity}
           className={classes.customInput}
           onChange={(e) => {
             setQuantity(e.target.value);
@@ -19,8 +23,11 @@ const ProductForm = (props) => {
             setTouched(true);
           }}
         />
-        {((submitted && quantity <= 12) || (touched && quantity <= 12)) && (
+        {((submitted && quantity < 12) || (touched && quantity < 12)) && (
           <div className={classes.helpText}>Minimum orders 12*</div>
+        )}
+        {((submitted && quantity > 100) || (touched && quantity > 100)) && (
+          <div className={classes.helpText}>Maximum orders 100*</div>
         )}
       </div>
       <div className={classes.urgentOrderCheckBox}>
@@ -31,7 +38,7 @@ const ProductForm = (props) => {
           className={classes.button}
           onClick={() => {
             setSubmitted(true);
-            if (quantity > 12) {
+            if (quantity >= 12 && quantity <= 100) {
               props.addProductToCart({
                 selectedProduct: props.selectedProduct,
                 quantity: quantity,
@@ -41,7 +48,7 @@ const ProductForm = (props) => {
             }
           }}
         >
-          Add
+          {props.edit ? "Update" : "Add"}
         </div>
       </div>
     </div>

@@ -104,3 +104,6 @@ th {
     font-size: 10px;
     cursor: pointer;
 }
+.dataRow{
+  cursor: pointer;
+}

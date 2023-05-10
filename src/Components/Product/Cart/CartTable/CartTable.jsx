@@ -4,7 +4,16 @@ import NoProduct from "../../../../assets/NoProductItem.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { productActions } from "../../../../Store/productReducer";
-const CartTable = ({ cartItems, changeHeader, setOpenModal }) => {
+import { MODAL_OPENED_BY } from "../../../../Constants/Constant.Js";
+import { INITIATED_TABLE_BY } from "../../../../Constants/Constant.Js";
+const CartTable = ({
+  cartItems,
+  changeHeader,
+  setOpenModal,
+  setChangeInitiatedFrom,
+  edit,
+  setOpenedModalBy
+}) => {
   const dispatch = useDispatch();
   const deleteItem = (product) => {
     dispatch(productActions.deleteProductInCart({ ...product }));
@@ -39,7 +48,16 @@ const CartTable = ({ cartItems, changeHeader, setOpenModal }) => {
             {changeHeader && (
               <th
                 className={`${classes.editContainer}`}
-                onClick={() => setOpenModal(true)}
+                onClick={() => {
+                  setOpenModal(true);
+                  setChangeInitiatedFrom(INITIATED_TABLE_BY.FROM_TABLE);
+                  setOpenedModalBy(MODAL_OPENED_BY.EDIT)
+                  dispatch(
+                    productActions.setSelectedTableItem({
+                      selectedTableItem: cartItems[0],
+                    })
+                  );
+                }}
               >
                 Edit
                 <FontAwesomeIcon
@@ -53,7 +71,21 @@ const CartTable = ({ cartItems, changeHeader, setOpenModal }) => {
         <tbody className={classes.tableBody}>
           {cartItems.map((item, index) => {
             return (
-              <tr key={index}>
+              <tr
+                key={index}
+                className={classes.dataRow}
+                onClick={() => {
+                  if (!edit) {
+                    return;
+                  }
+                  setChangeInitiatedFrom("table");
+                  dispatch(
+                    productActions.setSelectedTableItem({
+                      selectedTableItem: item,
+                    })
+                  );
+                }}
+              >
                 <td className={classes.tableDataItemProduct}>
                   <div className={classes.productLableContainer}>
                     <div className={classes.productImageContainer}>
@@ -84,7 +116,7 @@ const CartTable = ({ cartItems, changeHeader, setOpenModal }) => {
                       {item.productDetail.currency.symbol}
                       {item.price}
                     </div>
-                    {!changeHeader && (
+                    {!changeHeader && edit && (
                       <div
                         className={classes.closeContainer}
                         onClick={() => {
@@ -96,7 +128,7 @@ const CartTable = ({ cartItems, changeHeader, setOpenModal }) => {
                           className={classes.faClose}
                         />
                       </div>
-                    )}{" "}
+                    )}
                   </div>
                 </td>
               </tr>

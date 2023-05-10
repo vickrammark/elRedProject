@@ -6,9 +6,13 @@ import Home from "./Components/Product/Home/Home";
 import Cart from "./Components/Product/Cart/Cart";
 import FooterProductList from "./Components/Product/Home/FooterProductList.jsx/FooterProductList";
 import { useSelector } from "react-redux";
+import { MODAL_OPENED_BY } from "./Constants/Constant.Js";
+import { INITIATED_TABLE_BY } from "./Constants/Constant.Js";
 function App() {
   const products = useSelector((state) => state.product.subProducts);
   const [openModal, setOpenModal] = useState(false);
+  const [modalOpenedBy, setOpenedModalBy] = useState(MODAL_OPENED_BY.PRODUCT);
+  const [changeInitiatedFrom, setChangeInitiatedFrom] = useState(INITIATED_TABLE_BY.FROM_VARIANT);
   const selectedSubProduct = useSelector(
     (state) => state.product.selectedSubProduct
   );
@@ -22,7 +26,14 @@ function App() {
           <div className={classes.innerMainContainer}>
             <div className={classes.innerSubContainer}>
               <Menubar />
-              <Home openModal={openModal} setOpenModal={setOpenModal} />
+              <Home
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                setOpenedModalBy={setOpenedModalBy}
+                modalOpenedBy={modalOpenedBy}
+                setChangeInitiatedFrom={setChangeInitiatedFrom}
+                changeInitiatedFrom={changeInitiatedFrom}
+              />
             </div>
             {selectedSubProduct && (
               <div className={classes.footerContainer}>
@@ -35,7 +46,12 @@ function App() {
           </div>
         </div>
         <div className={classes.cartContainer}>
-          <Cart openModal={openModal} setOpenModal={setOpenModal} />
+          <Cart
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            setOpenedModalBy={setOpenedModalBy}
+            setChangeInitiatedFrom={setChangeInitiatedFrom}
+          />
         </div>
       </div>
     </div>

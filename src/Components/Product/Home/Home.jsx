@@ -64,10 +64,19 @@ const Home = (props) => {
           <ProductItemList
             products={productItems}
             setOpenModal={props.setOpenModal}
+            setOpenedModalBy={props.setOpenedModalBy}
           />
         </div>
       )}
-      {props.openModal && <CartModal setOpenModal={props.setOpenModal} />}
+      {props.openModal && (
+        <CartModal
+          setOpenModal={props.setOpenModal}
+          modalOpenedBy={props.modalOpenedBy}
+          setChangeInitiatedFrom={props.setChangeInitiatedFrom}
+          changeInitiatedFrom={props.changeInitiatedFrom}
+          
+        />
+      )}
     </div>
   );
 };

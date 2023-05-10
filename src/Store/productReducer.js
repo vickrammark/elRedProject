@@ -12,7 +12,7 @@ const productSlice = createSlice({
     selectedProductItem: null,
     selectedProductVariant: null,
     selectedProductsInCart: [],
-    selectedVariantIndex: 0,
+    selectedTableItem: null,
   },
   reducers: {
     setAllProducts: (state, action) => {
@@ -36,12 +36,18 @@ const productSlice = createSlice({
     },
     setSelectedProductVariant: (state, action) => {
       state.selectedProductVariant = action.payload.selectedProductVariant;
-      state.selectedVariantIndex = action.payload.selectedVariantIndex;
+    },
+    setSelectedTableItem: (state, action) => {
+      state.selectedTableItem = action.payload.selectedTableItem;
     },
     setSelectedProductInCart: (state, action) => {
       const selectedProduct = action.payload.selectedProduct;
       const selectedVariant = action.payload.selectedVariant;
       const quantity = action.payload.quantity;
+      const variants = action.payload.variants;
+      const colorIndex = action.payload.colorIndex;
+      const packageIndex = action.payload.packageIndex;
+      const arry = state.selectedProductsInCart;
       const findIndex = state.selectedProductsInCart.findIndex((item) => {
         return (
           item.productDetail.productId === selectedProduct.productId &&
@@ -51,18 +57,20 @@ const productSlice = createSlice({
       });
       if (findIndex >= 0) {
         const updatedProduct = state.selectedProductsInCart[findIndex];
-        updatedProduct.quantity =
-          parseInt(updatedProduct.quantity) + parseInt(quantity);
+        updatedProduct.quantity = parseInt(quantity);
         updatedProduct.price =
           parseInt(updatedProduct.quantity) *
           parseInt(selectedVariant.grossPrice);
         state.selectedProductsInCart[findIndex] = updatedProduct;
       } else {
         state.selectedProductsInCart.push({
-          price: parseInt(selectedVariant.grossPrice),
+          price: parseInt(quantity) * parseInt(selectedVariant.grossPrice),
           quantity: parseInt(quantity),
           productDetail: selectedProduct,
           selectedVariant: selectedVariant,
+          variants,
+          colorIndex,
+          packageIndex,
         });
       }
     },

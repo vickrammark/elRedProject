@@ -2,31 +2,25 @@ import { useEffect, useState } from "react";
 import classes from "./Variant.module.css";
 
 const Variant = (props) => {
-  const [variants, setVariants] = useState([]);
-  useEffect(() => {
-    if (props.selectedProduct) {
-      setVariants(props.selectedProduct.variants);
-    }
-  }, []);
   return (
     <div className={classes.container}>
       <div className={classes.header}>{props.header}</div>
       <div className={classes.variantContainer}>
-        {variants.map((item,index) => {
+        {props.mappingItems.map((item, index) => {
           return (
             <div
-              key={item.bpCatalogNumber}
+              key={index}
               onClick={() => {
-                props.setSelectedVariant(item);
                 props.setSelectedVariantIndex(index);
+                props.setChangeInitiatedFrom("variant");
               }}
               className={`${
-                props.selectedVariant.bpCatalogNumber === item.bpCatalogNumber
+                props.activeIndex === index
                   ? classes.variantItemActive
                   : classes.variantItemInActive
               }`}
             >
-              {item[props.field]}
+              {props.field === "colorDesc" ? item : item.packageDesc}
             </div>
           );
         })}

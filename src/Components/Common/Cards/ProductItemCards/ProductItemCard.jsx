@@ -4,6 +4,7 @@ import ProductItemClasses from "./ProductItemCard.module.css";
 import NoProduct from "../../../../assets/NoProductItem.jpg";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../../../Store/productReducer";
+import { MODAL_OPENED_BY } from "../../../../Constants/Constant.Js";
 
 const ProductItemCard = (props) => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const ProductItemCard = (props) => {
     <div
       className={ProductItemClasses.container}
       onClick={() => {
+        props.setOpenedModalBy(MODAL_OPENED_BY.PRODUCT)
         dispatch(
           productActions.setProductItem({ selectedProductItem: props.item })
         );
