@@ -93,7 +93,27 @@ const productSlice = createSlice({
     editProductsInCart: (state, action) => {
       const index = action.payload.index;
       const product = action.payload.productItem;
-      state.selectedProductsInCart[index] = product;
+      const findIndex = state.selectedProductsInCart.findIndex(
+        (item) =>
+          item.productDetail.productId === product.productDetail.productId &&
+          item.selectedVariant.bpCatalogNumber ===
+            product.selectedVariant.bpCatalogNumber
+      );
+      const items = [...state.selectedProductsInCart];
+      console.log(findIndex, product, items);
+      if (findIndex >= 0) {
+        const filteredProducts = state.selectedProductsInCart.filter(
+          (item) => item.index !== index
+        );
+        console.log(filteredProducts);
+        const newlyIndexProducts = filteredProducts.map((item, index) => {
+          return { ...item, index: index };
+        });
+        newlyIndexProducts[findIndex ? findIndex - 1 : 0] = product;
+        state.selectedProductsInCart = newlyIndexProducts;
+      } else {
+        state.selectedProductsInCart[index] = product;
+      }
     },
   },
 });
