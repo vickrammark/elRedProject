@@ -44,6 +44,24 @@ const CartModal = (props) => {
   const handlClose = () => {
     props.setOpenModal(false);
   };
+  const editProductInCart = (quantity) => {
+    dispatch(
+      productActions.editProductsInCart({
+        index: selectedTableItem.index,
+        productItem: {
+          ...selectedTableItem,
+          variants,
+          colorIndex: selectedVariantTypeIndex,
+          packageIndex: selectedPackageIndex,
+          selectedVariant: selectedProductVariant,
+          quantity,
+          price:
+            parseInt(quantity) * parseInt(selectedProductVariant.grossPrice),
+        },
+      })
+    );
+  };
+
   useEffect(() => {
     if (selectedTableItem) {
       dispatch(
@@ -199,7 +217,15 @@ const CartModal = (props) => {
             selectedVariant={selectedVariant}
             selectedProduct={selectedProduct}
             edit={props.modalOpenedBy === MODAL_OPENED_BY.EDIT ? true : false}
-            quantity={selectedTableItem ? selectedTableItem.quantity : ""}
+            quantity={
+              cartItems.length === 0
+                ? ""
+                : selectedTableItem
+                ? selectedTableItem.quantity
+                : ""
+            }
+            editProductInCart={editProductInCart}
+            cartItems={cartItems}
           />
         </div>
       )}
@@ -232,20 +258,20 @@ const CartModal = (props) => {
             }
           />
         </div>
-        {cartItems.length > 0 && props.modalOpenedBy === MODAL_OPENED_BY.SEE_ALL
-          ? false
-          : true && (
-              <div className={classes.addCartButtonContainer}>
-                <div
-                  className={classes.addCartToButton}
-                  onClick={() => {
-                    handlClose();
-                  }}
-                >
-                  Add to Cart
-                </div>
+        {console.log(cartItems.length)}
+        {cartItems.length > 0 &&
+          (props.modalOpenedBy === MODAL_OPENED_BY.SEE_ALL ? false : true) && (
+            <div className={classes.addCartButtonContainer}>
+              <div
+                className={classes.addCartToButton}
+                onClick={() => {
+                  handlClose();
+                }}
+              >
+                Add to Cart
               </div>
-            )}
+            </div>
+          )}
       </div>
     </div>,
     document.getElementById("portal")

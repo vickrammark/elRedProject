@@ -8,6 +8,12 @@ const ProductForm = (props) => {
   useEffect(() => {
     setQuantity(props.quantity);
   }, [props.quantity]);
+  useEffect(()=>{
+    if(props.cartItems?.length===0){
+      setSubmitted(false);
+      setTouched(false);
+    }
+  },[props.cartItems])
   return (
     <div className={classes.container}>
       <div className={classes.label}>Enter Quantity</div>
@@ -39,16 +45,24 @@ const ProductForm = (props) => {
           onClick={() => {
             setSubmitted(true);
             if (quantity >= 12 && quantity <= 100) {
-              props.addProductToCart({
-                selectedProduct: props.selectedProduct,
-                quantity: quantity,
-                selectedVariant: props.selectedVariant,
-              });
-              setSubmitted(false);
+              if (props.edit) {
+                props.editProductInCart(quantity);
+              } else {
+                props.addProductToCart({
+                  selectedProduct: props.selectedProduct,
+                  quantity: quantity,
+                  selectedVariant: props.selectedVariant,
+                });
+                setSubmitted(false);
+              }
             }
           }}
         >
-          {props.edit ? "Update" : "Add"}
+          {props.edit
+            ? props.cartItems?.length > 0
+              ? "Update"
+              : "Add"
+            : "Add"}
         </div>
       </div>
     </div>

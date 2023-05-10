@@ -119,8 +119,10 @@ const CartTable = ({
                     {!changeHeader && edit && (
                       <div
                         className={classes.closeContainer}
-                        onClick={() => {
+                        onClick={(e) => {
                           deleteItem(item);
+                          e.preventDefault();
+                          e.stopPropagation();
                         }}
                       >
                         <FontAwesomeIcon

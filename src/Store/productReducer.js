@@ -71,6 +71,7 @@ const productSlice = createSlice({
           variants,
           colorIndex,
           packageIndex,
+          index: state.selectedProductsInCart.length,
         });
       }
     },
@@ -88,6 +89,11 @@ const productSlice = createSlice({
     },
     clearAllProductInCart: (state, action) => {
       state.selectedProductsInCart = [];
+    },
+    editProductsInCart: (state, action) => {
+      const index = action.payload.index;
+      const product = action.payload.productItem;
+      state.selectedProductsInCart[index] = product;
     },
   },
 });

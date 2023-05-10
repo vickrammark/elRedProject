@@ -38,3 +38,16 @@
   overflow-y: auto;
   max-height: 400px;
 }
+
+.loadContainer {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.loaderContent{
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}

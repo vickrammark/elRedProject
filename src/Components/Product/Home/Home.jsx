@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Dna } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPorductItems,
@@ -18,6 +19,7 @@ const Home = (props) => {
   const productItems = useSelector((state) => state.product.productItems);
   const checkRef = useRef(false);
   const dispatch = useDispatch();
+  const [showLoader, setShowLoader] = useState();
   const selectedSubProduct = useSelector(
     (state) => state.product.selectedSubProduct
   );
@@ -25,17 +27,21 @@ const Home = (props) => {
   useEffect(() => {
     if (!checkRef.current) {
       checkRef.current = true;
-      getAllProducts(dispatch);
+      getAllProducts(dispatch, setShowLoader);
     }
   }, []);
   useEffect(() => {
     if (products.length > 0) {
-      getAllSubProducts(selectedProduct.categoryId, dispatch);
+      getAllSubProducts(selectedProduct.categoryId, dispatch, setShowLoader);
     }
   }, [products, selectedProduct]);
   useEffect(() => {
     if (subProducts.length > 0 && selectedSubProduct) {
-      getAllPorductItems(selectedSubProduct.subCategoryId, dispatch);
+      getAllPorductItems(
+        selectedSubProduct.subCategoryId,
+        dispatch,
+        setShowLoader
+      );
     }
   }, [subProducts, selectedSubProduct]);
   return (
@@ -46,7 +52,20 @@ const Home = (props) => {
           selectedSubProduct={selectedSubProduct}
         />
       </div>
-      {selectedSubProduct === null ? (
+      {showLoader ? (
+        <div className={classes.loaderContainer}>
+          <div className={classes.loaderContent}>
+            <Dna
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper"
+            />
+          </div>
+        </div>
+      ) : selectedSubProduct === null ? (
         <>
           <div className={classes.product}>
             <ProductList
@@ -74,7 +93,6 @@ const Home = (props) => {
           modalOpenedBy={props.modalOpenedBy}
           setChangeInitiatedFrom={props.setChangeInitiatedFrom}
           changeInitiatedFrom={props.changeInitiatedFrom}
-          
         />
       )}
     </div>
