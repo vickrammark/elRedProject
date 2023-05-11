@@ -147,7 +147,7 @@ const CartModal = (props) => {
       cartItems.length === 0 &&
       props.modalOpenedBy === MODAL_OPENED_BY.EDIT
     ) {
-      setOpenModal(false);
+      props.setOpenModal(false);
     }
   }, [cartItems]);
 
