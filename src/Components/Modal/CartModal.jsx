@@ -44,7 +44,6 @@ const CartModal = (props) => {
   const handlClose = () => {
     props.setOpenModal(false);
   };
-  console.log("selected table item =>",selectedTableItem)
   const editProductInCart = (quantity) => {
     dispatch(
       productActions.editProductsInCart({
