@@ -114,7 +114,9 @@ const productSlice = createSlice({
         const filteredProducts = state.selectedProductsInCart.filter(
           (item) => item.index !== index
         );
-        filteredProducts[findIndex ? findIndex - 1 : 0] = product;
+        filteredProducts[
+          findIndex ? (findIndex < index ? findIndex : findIndex - 1) : 0
+        ] = product;
         const newlyIndexProducts = filteredProducts.map((item, index) => {
           return { ...item, index: index };
         });
