@@ -85,7 +85,18 @@ const productSlice = createSlice({
               action.payload.selectedVariant.bpCatalogNumber
           )
       );
-      state.selectedProductsInCart = data;
+      const newlyIndexProducts = data.map((item, index) => {
+        return { ...item, index: index };
+      });
+      if (
+        state.selectedTableItem &&
+        action.payload.index === state.selectedTableItem.index
+      ) {
+        if (state.selectedProductsInCart.length > 0) {
+          state.selectedTableItem = newlyIndexProducts[action.payload.index];
+        }
+      }
+      state.selectedProductsInCart = newlyIndexProducts;
     },
     clearAllProductInCart: (state, action) => {
       state.selectedProductsInCart = [];
@@ -99,13 +110,10 @@ const productSlice = createSlice({
           item.selectedVariant.bpCatalogNumber ===
             product.selectedVariant.bpCatalogNumber
       );
-      const items = [...state.selectedProductsInCart];
-      console.log(findIndex, product, items);
-      if (findIndex >= 0) {
+      if (findIndex >= 0 && index != findIndex) {
         const filteredProducts = state.selectedProductsInCart.filter(
           (item) => item.index !== index
         );
-        console.log(filteredProducts);
         const newlyIndexProducts = filteredProducts.map((item, index) => {
           return { ...item, index: index };
         });

@@ -44,6 +44,7 @@ const CartModal = (props) => {
   const handlClose = () => {
     props.setOpenModal(false);
   };
+  console.log("selected table item =>",selectedTableItem)
   const editProductInCart = (quantity) => {
     dispatch(
       productActions.editProductsInCart({
@@ -141,6 +142,15 @@ const CartModal = (props) => {
       })
     );
   }, [selectedPackageIndex, selectedProduct]);
+
+  useEffect(() => {
+    if (
+      cartItems.length === 0 &&
+      props.modalOpenedBy === MODAL_OPENED_BY.EDIT
+    ) {
+      setOpenModal(false);
+    }
+  }, [cartItems]);
 
   const getVariantType = (
     variantIndex = 0,
@@ -258,7 +268,6 @@ const CartModal = (props) => {
             }
           />
         </div>
-        {console.log(cartItems.length)}
         {cartItems.length > 0 &&
           (props.modalOpenedBy === MODAL_OPENED_BY.SEE_ALL ? false : true) && (
             <div className={classes.addCartButtonContainer}>
@@ -268,7 +277,9 @@ const CartModal = (props) => {
                   handlClose();
                 }}
               >
-                Add to Cart
+                {props.modalOpenedBy === MODAL_OPENED_BY.EDIT
+                  ? "Update to Cart"
+                  : "Add to Cart"}
               </div>
             </div>
           )}
