@@ -7,11 +7,12 @@ import { productActions } from "../../Store/productReducer";
 import ProductInfo from "../Product/Cart/ProductInfo/ProductInfo";
 import Variant from "../Product/Cart/Variant/Variant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faL } from "@fortawesome/free-solid-svg-icons";
 import ProductForm from "../Product/Cart/ProductForm/ProductForm";
 import CartTable from "../Product/Cart/CartTable/CartTable";
 import { MODAL_OPENED_BY } from "../../Constants/Constant.Js";
 import { INITIATED_TABLE_BY } from "../../Constants/Constant.Js";
+import { compose } from "redux";
 const CartModal = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(
@@ -27,6 +28,7 @@ const CartModal = (props) => {
   const selectedTableItem = useSelector(
     (state) => state.product.selectedTableItem
   );
+  const [showProductCloseButton, setProductCloseButton] = useState(false);
   const addProductToCart = (producDetails) => {
     dispatch(
       productActions.setSelectedProductInCart({
@@ -44,6 +46,51 @@ const CartModal = (props) => {
   const handlClose = () => {
     props.setOpenModal(false);
   };
+  const modalWidth =
+    props.modalOpenedBy !== MODAL_OPENED_BY.SEE_ALL ? 768 : 448;
+  useEffect(() => {
+    let timer = null;
+    let tem = window.innerWidth - modalWidth;
+    let container = document.getElementById("cartModalContainer");
+    const showCloseButton = () => {
+      if (window.innerWidth < modalWidth) {
+        setProductCloseButton(true);
+      }
+    };
+    const hideCloseButton = () => {
+      if (window.innerWidth >= modalWidth) {
+        setProductCloseButton(false);
+      }
+    };
+    const setter = () => {
+      tem = window.innerWidth - modalWidth;
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        showCloseButton();
+        hideCloseButton();
+        if (window.innerWidth < modalWidth) {
+          container.style.left = `0%`;
+          container.style.top = `0%`;
+          container.style.bottom = "unset";
+          container.style.right = "unset";
+        }
+        if (tem > 0) {
+          container.style.left = `${(tem / window.innerWidth) * 100}%`;
+        }
+      }, 500);
+    };
+    if (tem > 0) {
+      container.style.left = `${(tem / window.innerWidth) * 100}%`;
+    }
+    window.addEventListener("resize", setter);
+    showCloseButton();
+    hideCloseButton();
+    return () => {
+      window.removeEventListener("resize", setter);
+    };
+  }, [modalWidth]);
   const editProductInCart = (quantity) => {
     dispatch(
       productActions.editProductsInCart({
@@ -170,6 +217,7 @@ const CartModal = (props) => {
 
   return ReactDOM.createPortal(
     <div
+      id="cartModalContainer"
       className={`${classes.container} ${
         props.modalOpenedBy !== MODAL_OPENED_BY.SEE_ALL
           ? classes["container-expand"]
@@ -179,7 +227,17 @@ const CartModal = (props) => {
       {props.modalOpenedBy !== MODAL_OPENED_BY.SEE_ALL && (
         <div className={classes.ProductContainer}>
           <div className={classes.productHeader}>
-            {selectedProduct?.itemDescription}
+            <div className={classes.productHeaderContent}>
+              {selectedProduct?.itemDescription}
+            </div>
+            {showProductCloseButton && (
+              <div
+                className={classes.productCloseButton}
+                onClick={() => props.setOpenModal(false)}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </div>
+            )}
           </div>
           <ProductShowCaseCard selectedProduct={selectedProduct} />
           {selectedProductVariant && (

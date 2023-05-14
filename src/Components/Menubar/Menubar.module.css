@@ -36,6 +36,8 @@
   padding: 10px;
   border-radius: 7px;
   cursor: pointer;
+  flex-shrink: 1;
+  flex-wrap: wrap;
 }
 
 .active {
@@ -55,4 +57,15 @@
 .active > .content {
   color: #530526;
   text-align: left;
+}
+
+@media (max-width:730px) {
+  .container{
+    flex: 1;
+    align-items: center;
+  }
+  .optionContainer{
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }

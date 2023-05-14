@@ -9,7 +9,6 @@
 .product {
   display: flex;
   flex-direction: row;
-  gap: 20px;
   align-items: center;
   overflow-x: auto;
   margin-bottom: 20px;
@@ -50,4 +49,14 @@
   border-radius: 10px;
   padding: 16px;
   text-align: center;
+}
+
+@media (max-width:730px) {
+  .container{
+    flex: 1;
+  }
+  .product{
+    gap: 20px;
+    padding-bottom: 16px;
+  }
 }

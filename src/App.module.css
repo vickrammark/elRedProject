@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 15px;
   margin: 15px;
   flex: 0.7;
@@ -15,13 +15,7 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
-  width: 100%;
   flex: 1;
-}
-.innerMainContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 .footerContainer {
   height: 120px;
@@ -40,8 +34,26 @@
   margin-left: 0px;
 }
 
-.parentContainer{
-    display: flex;
-    flex-direction: row;
+.parentContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+@media (max-width: 1200px) {
+  .parentContainer {
+    flex-direction: column;
+  }
+  .container {
     flex: 1;
+  }
+  .cartContainer {
+    flex: 1;
+    margin-left: 15px;
+  }
+}
+@media (max-width: 730px) {
+  .innerSubContainer {
+    flex-direction: column;
+  }
 }

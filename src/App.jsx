@@ -12,7 +12,9 @@ function App() {
   const products = useSelector((state) => state.product.subProducts);
   const [openModal, setOpenModal] = useState(false);
   const [modalOpenedBy, setOpenedModalBy] = useState(MODAL_OPENED_BY.PRODUCT);
-  const [changeInitiatedFrom, setChangeInitiatedFrom] = useState(INITIATED_TABLE_BY.FROM_VARIANT);
+  const [changeInitiatedFrom, setChangeInitiatedFrom] = useState(
+    INITIATED_TABLE_BY.FROM_VARIANT
+  );
   const selectedSubProduct = useSelector(
     (state) => state.product.selectedSubProduct
   );
@@ -23,27 +25,25 @@ function App() {
       </div>
       <div className={classes.parentContainer}>
         <div className={classes.container}>
-          <div className={classes.innerMainContainer}>
-            <div className={classes.innerSubContainer}>
-              <Menubar />
-              <Home
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-                setOpenedModalBy={setOpenedModalBy}
-                modalOpenedBy={modalOpenedBy}
-                setChangeInitiatedFrom={setChangeInitiatedFrom}
-                changeInitiatedFrom={changeInitiatedFrom}
+          <div className={classes.innerSubContainer}>
+            <Menubar />
+            <Home
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              setOpenedModalBy={setOpenedModalBy}
+              modalOpenedBy={modalOpenedBy}
+              setChangeInitiatedFrom={setChangeInitiatedFrom}
+              changeInitiatedFrom={changeInitiatedFrom}
+            />
+          </div>
+          {selectedSubProduct && (
+            <div className={classes.footerContainer}>
+              <FooterProductList
+                products={products}
+                selectedProduct={selectedSubProduct}
               />
             </div>
-            {selectedSubProduct && (
-              <div className={classes.footerContainer}>
-                <FooterProductList
-                  products={products}
-                  selectedProduct={selectedSubProduct}
-                />
-              </div>
-            )}
-          </div>
+          )}
         </div>
         <div className={classes.cartContainer}>
           <Cart

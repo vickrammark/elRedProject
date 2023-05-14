@@ -64,6 +64,15 @@
   text-align: left;
 }
 
-.search{
-    width: 50%;
+.search {
+  width: 50%;
+}
+
+@media (max-width: 700px) {
+  .logo-search-container {
+    gap: 5px;
+  }
+  .logo-profile-container {
+    gap: 5px;
+  }
 }
