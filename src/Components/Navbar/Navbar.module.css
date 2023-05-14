@@ -74,5 +74,6 @@
   }
   .logo-profile-container {
     gap: 5px;
+    display: none;
   }
 }
