@@ -90,6 +90,7 @@
     right: 0%;
     overflow-y: auto;
     width: auto;
+    margin: 5px;
   }
   .ProductContainer {
     height: auto;

@@ -33,8 +33,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
   gap: 20px;
   overflow-y: auto;
   max-height: 400px;
@@ -47,18 +45,22 @@
   align-items: center;
   padding: 16px;
 }
-.loaderContent{
+.loaderContent {
   border-radius: 10px;
   padding: 16px;
   text-align: center;
 }
 
-@media (max-width:730px) {
-  .container{
+@media (max-width: 730px) {
+  .container {
     flex: 1;
   }
-  .product{
+  .product {
     gap: 20px;
     padding-bottom: 16px;
+  }
+  .productItem {
+    align-items: center;
+    justify-content: center;
   }
 }
